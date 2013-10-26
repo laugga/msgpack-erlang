@@ -38,6 +38,9 @@ pack(false, _) ->
     << 16#C2:8 >>;
 pack(true, _) ->
     << 16#C3:8 >>;
+    
+pack({uuid,Bin}, _) when is_binary(Bin) ->
+    << 16#D4:8, Bin:16/binary >>;
 
 pack(Bin, Opt) when is_binary(Bin) ->
     case Opt of

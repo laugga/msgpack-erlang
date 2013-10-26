@@ -68,6 +68,10 @@ unpack_stream(<<16#D2, V:32/big-signed-integer-unit:1, Rest/binary>>, _) ->
 unpack_stream(<<16#D3, V:64/big-signed-integer-unit:1, Rest/binary>>, _) ->
     {V, Rest};
 
+%% Universally unique identifier
+unpack_stream(<<16#D4, V:16/binary, Rest/binary>>, _) ->
+    {{uuid,V}, Rest};
+
 %% Strings as new spec, or Raw bytes as old spec
 unpack_stream(<<2#101:3, L:5, V:L/binary, Rest/binary>>, Opt) ->
     unpack_string_or_raw(V, Opt, Rest);

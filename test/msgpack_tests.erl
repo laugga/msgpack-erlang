@@ -130,6 +130,15 @@ binary_test_() ->
               ?assertEqual({ok, <<>>}, unpack(Binary))
       end}
     ].
+    
+uuid_test_() ->
+    [
+     {"uuid",
+      fun() ->
+              Binary = pack({uuid,<<221,85,73,226,102,90,82,118,40,26,166,74,52,42,61,207>>}),
+              ?assertEqual({ok, {uuid,<<221,85,73,226,102,90,82,118,40,26,166,74,52,42,61,207>>}}, unpack(Binary))
+      end}
+    ].
 
 %% long_binary_test_()->
 %%     [
